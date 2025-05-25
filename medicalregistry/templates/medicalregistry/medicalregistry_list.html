@@ -1,0 +1,22 @@
+<a href="{% url 'medicalregistry_create' %}">+ Призначити пацієнту лікаря</a>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<br>
+<div>
+    <p>Total patient: {{ total_patient }}</p>
+</div>
+<ul>
+    {% for patient in medicalregistry %}
+        <li>
+            {{ patient.description }} {{ patient.doctor }} {{ patient.patient }} 
+            <a href="{% url 'medicalregistry_delete' patient.id %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No patient</li>
+    {% endfor %}
+</ul>
